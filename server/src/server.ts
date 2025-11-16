@@ -10,7 +10,7 @@ const start = async () => {
     await connectDB();
     await sequelize.sync();
     app.listen(PORT, () => {
-      console.log(`Server running on ${PORT}`);
+      console.log(`Server running on port ${PORT}`);
     });
   } catch (err) {
     console.error("Couldnot start ", err);
