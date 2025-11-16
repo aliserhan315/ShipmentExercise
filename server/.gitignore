@@ -1,38 +1,46 @@
-# Node modules
-/node_modules/
 
-# Logs
-logs
-*.log
+node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+dist
+build
+.out
+.next
+.cache
 
-# Environment variables
+*.tsbuildinfo
+
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Optional npm cache
-.npm
+server/.env
+client/.env
 
-# Optional REPL history
-.node_repl_history
+logs
+*.log
+*.log.*
+log/
 
-# Output of build tools
-dist/
-build/
-
-# IDEs and editors
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# OS files
+.vscode
+.idea
+*.swp
+*.swo
 .DS_Store
-Thumbs.db
+
+coverage
+.nyc_output
+jest-html-reporters-*
+
+mysql-data
+.tmp
+
+
