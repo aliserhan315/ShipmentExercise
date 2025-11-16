@@ -1,17 +1,14 @@
-import express, { Application, Request, Response } from "express";
-import cors from "cors";
+import express from "express";
+import authRoutes from "./routes/auth";
+import userRoutes from "./routes/user";
+import shipmentRoutes from "./routes/shipment";
 
-const app: Application = express();
 
-app.use(cors());
+const app = express();
+
 app.use(express.json());
-
-app.get("/api/health", (req: Request, res: Response) => {
-  res.status(200).json({
-    success: true,
-    message: "API is running",
-    data: { time: new Date().toISOString() },
-  });
-});
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/shipments", shipmentRoutes);
 
 export default app;
