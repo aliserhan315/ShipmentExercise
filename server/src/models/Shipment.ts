@@ -13,6 +13,10 @@ export interface ShipmentAttributes {
   waybill: string;
   customerName: string;
   customerPhone: string;
+  city: string;
+  country: string;
+  street: string;
+  building: string;
   customerAddress: string;
   status: ShipmentStatus;
   userId: number;
@@ -23,7 +27,12 @@ export interface ShipmentAttributes {
 
 type ShipmentCreationAttributes = Optional<
   ShipmentAttributes,
-  "id" | "status"  | "customerAddress" | "weatherSnapshot" | "createdAt" | "updatedAt"
+  | "id"
+  | "status"
+  | "customerAddress"
+  | "weatherSnapshot"
+  | "createdAt"
+  | "updatedAt"
 >;
 
 class Shipment
@@ -34,6 +43,12 @@ class Shipment
   public waybill!: string;
   public customerName!: string;
   public customerPhone!: string;
+
+  public city!: string;
+  public country!: string;
+  public street!: string;
+  public building!: string;
+
   public customerAddress!: string;
   public status!: ShipmentStatus;
   public userId!: number;
@@ -62,10 +77,29 @@ Shipment.init(
       type: DataTypes.STRING(30),
       allowNull: false,
     },
+
+    city: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    street: {
+      type: DataTypes.STRING(150),
+      allowNull: false,
+    },
+    building: {
+      type: DataTypes.STRING(150),
+      allowNull: false,
+    },
+
     customerAddress: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
     status: {
       type: DataTypes.ENUM("CREATED", "IN_TRANSIT", "DELIVERED", "CANCELED"),
       allowNull: false,
@@ -75,7 +109,6 @@ Shipment.init(
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },
-
     weatherSnapshot: {
       type: DataTypes.JSON,
       allowNull: true,
