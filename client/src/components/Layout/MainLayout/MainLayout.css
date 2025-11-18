@@ -1,0 +1,15 @@
+.layout-root {
+  display: flex;
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.layout-main {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+.layout-main-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
