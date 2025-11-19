@@ -1,33 +1,43 @@
 .input-group {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .input-label {
   display: block;
-  margin-bottom: 4px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #6b7280;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: -0.01em;
 }
 
 .input-field {
   width: 100%;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background-color: #eef4ff;
-  padding: 11px 13px;
-  font-size: 0.9rem;
-  color: #111827;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
   box-sizing: border-box;
+  transition: all 0.15s ease;
 }
 
 .input-field::placeholder {
-  color: #9ca3af;
+  color: #94a3b8;
+  font-weight: 400;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #3b82f6;
   background-color: #ffffff;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-field:disabled {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
 }
