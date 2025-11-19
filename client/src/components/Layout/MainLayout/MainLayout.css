@@ -1,15 +1,26 @@
 .layout-root {
   display: flex;
   min-height: 100vh;
-  background: #f3f4f6;
+  background: #f8fafc;
 }
 
 .layout-main {
   flex: 1;
-  padding: 24px 32px;
+  padding: 28px 36px;
+  overflow-y: auto;
 }
 
 .layout-main-inner {
-  max-width: 1120px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .layout-main {
+    padding: 20px 16px;
+  }
+  
+  .sidebar {
+    width: 220px;
+  }
 }

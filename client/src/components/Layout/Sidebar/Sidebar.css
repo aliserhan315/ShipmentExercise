@@ -1,87 +1,100 @@
 .sidebar {
-  width: 240px;
+  width: 260px;
   background: #ffffff;
-  border-right: 1px solid #e5e7eb;
+  border-right: 1px solid #f1f5f9;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px;
+  padding: 28px 22px;
 }
 
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 36px;
 }
 
 .sidebar-logo-box {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: #2563eb1a;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .sidebar-logo-shape {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 6px;
-  border: 2px solid #2563eb;
+  border: 2px solid #ffffff;
 }
 
 .sidebar-title {
   font-weight: 700;
-  font-size: 18px;
-  color: #111827;
+  font-size: 19px;
+  color: #0f172a;
+  letter-spacing: -0.02em;
 }
 
 .sidebar-nav {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .sidebar-link {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
   text-decoration: none;
   font-size: 14px;
-  color: #4b5563;
+  font-weight: 500;
+  color: #64748b;
+  transition: all 0.15s ease;
 }
 
 .sidebar-link:hover {
-  background: #f3f4ff;
-  color: #2563eb;
+  background: #f8fafc;
+  color: #3b82f6;
 }
 
 .sidebar-link-active {
-  background: #2563eb;
+  background: #3b82f6;
   color: #ffffff;
+  font-weight: 600;
+}
+
+.sidebar-link-active:hover {
+  background: #2563eb;
 }
 
 .sidebar-icon {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .sidebar-logout {
-  margin-top: 16px;
+  margin-top: 20px;
   border: none;
   background: transparent;
-  color: #ef4444;
+  color: #dc2626;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.15s ease;
 }
 
 .sidebar-logout:hover {
-  background: #fee2e2;
+  background: #fef2f2;
 }
