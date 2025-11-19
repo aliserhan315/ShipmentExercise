@@ -17,7 +17,6 @@ export interface ShipmentAttributes {
   country: string;
   street: string;
   building: string;
-  customerAddress: string;
   status: ShipmentStatus;
   userId: number;
   weatherSnapshot?: object | null;
@@ -25,14 +24,9 @@ export interface ShipmentAttributes {
   updatedAt?: Date;
 }
 
-type ShipmentCreationAttributes = Optional<
+export type ShipmentCreationAttributes = Optional<
   ShipmentAttributes,
-  | "id"
-  | "status"
-  | "customerAddress"
-  | "weatherSnapshot"
-  | "createdAt"
-  | "updatedAt"
+  "id" | "status" | "weatherSnapshot" | "createdAt" | "updatedAt"
 >;
 
 class Shipment
@@ -43,13 +37,10 @@ class Shipment
   public waybill!: string;
   public customerName!: string;
   public customerPhone!: string;
-
   public city!: string;
   public country!: string;
   public street!: string;
   public building!: string;
-
-  public customerAddress!: string;
   public status!: ShipmentStatus;
   public userId!: number;
   public weatherSnapshot?: object | null;
@@ -77,7 +68,6 @@ Shipment.init(
       type: DataTypes.STRING(30),
       allowNull: false,
     },
-
     city: {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -94,12 +84,6 @@ Shipment.init(
       type: DataTypes.STRING(150),
       allowNull: false,
     },
-
-    customerAddress: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
     status: {
       type: DataTypes.ENUM("CREATED", "IN_TRANSIT", "DELIVERED", "CANCELED"),
       allowNull: false,
