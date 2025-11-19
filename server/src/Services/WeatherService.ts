@@ -15,14 +15,14 @@ export interface WeatherSnapshot {
 export const WeatherService = {
   async getWeatherForCityAndCountry(
     city: string,
-    country: string
+    country: string 
   ): Promise<WeatherSnapshot | null> {
     if (!WEATHERAPI_KEY) {
       console.warn("WEATHERAPI_KEY not set, skipping weather lookup");
       return null;
     }
 
-    const q = encodeURIComponent(`${city}, ${country}`);
+    const q = encodeURIComponent(city);
     const url = `https://api.weatherapi.com/v1/current.json?key=${WEATHERAPI_KEY}&q=${q}`;
 
     try {

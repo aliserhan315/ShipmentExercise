@@ -74,7 +74,11 @@ export const updateShipment = async (req: AuthRequest, res: Response) => {
       return errorresponse(res, "Invalid shipment id", 400);
     }
 
-    const shipment = await ShipmentService.updateShipment(req.user.id, id, req.body);
+    const shipment = await ShipmentService.updateShipment(
+      req.user.id,
+      id,
+      req.body
+    );
     return success(res, shipment, "Shipment updated");
   } catch (e: any) {
     if (e.message === "Shipment not found") {

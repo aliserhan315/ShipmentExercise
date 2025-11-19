@@ -1,7 +1,7 @@
 import Shipment, { ShipmentStatus } from "../models/Shipment";
 import { WeatherService } from "./WeatherService";
 
-interface CreateShipmentInput {
+export interface CreateShipmentInput {
   waybill: string;
   customerName: string;
   customerPhone: string;
@@ -11,7 +11,7 @@ interface CreateShipmentInput {
   building: string;
 }
 
-interface UpdateShipmentInput {
+export interface UpdateShipmentInput {
   customerName?: string;
   customerPhone?: string;
   city?: string;
@@ -21,42 +21,24 @@ interface UpdateShipmentInput {
   status?: ShipmentStatus;
 }
 
-function buildAddress(input: {
-  street?: string;
-  building?: string;
-  city?: string;
-  country?: string;
-}) {
-  return [input.street, input.building, input.city, input.country]
-    .filter(Boolean)
-    .join(", ");
-}
-
 export const ShipmentService = {
   async createShipment(userId: number, input: CreateShipmentInput) {
     const existing = await Shipment.findOne({
       where: { waybill: input.waybill },
     });
+
     if (existing) {
       throw new Error("Waybill already exists");
     }
 
-    const customerAddress = buildAddress({
-      street: input.street,
-      building: input.building,
-      city: input.city,
-      country: input.country,
-    });
-
     const shipment = await Shipment.create({
-      waybill: input.waybill,
-      customerName: input.customerName,
-      customerPhone: input.customerPhone,
-      city: input.city,
-      country: input.country,
-      street: input.street,
-      building: input.building,
-      customerAddress,
+      waybill: input.waybill.trim(),
+      customerName: input.customerName.trim(),
+      customerPhone: input.customerPhone.trim(),
+      city: input.city.trim(),
+      country: input.country.trim(),
+      street: input.street.trim(),
+      building: input.building.trim(),
       userId,
     });
 
@@ -90,7 +72,10 @@ export const ShipmentService = {
       where["$or"] = [
         { waybill: query.search },
         { customerName: { $like: s } },
-        { customerAddress: { $like: s } },
+        { city: { $like: s } },
+        { country: { $like: s } },
+        { street: { $like: s } },
+        { building: { $like: s } },
       ];
     }
 
@@ -139,25 +124,16 @@ export const ShipmentService = {
       shipment.building = data.building.trim();
     }
 
-    if (data.city || data.country || data.street || data.building) {
-      shipment.customerAddress = buildAddress({
-        street: shipment.street,
-        building: shipment.building,
-        city: shipment.city,
-        country: shipment.country,
-      });
-
-      if (data.city || data.country) {
-        try {
-          const weather = await WeatherService.getWeatherForCityAndCountry(
-            shipment.city,
-            shipment.country
-          );
-          if (weather) {
-            shipment.weatherSnapshot = weather;
-          }
-        } catch {
+    if (data.city || data.country) {
+      try {
+        const weather = await WeatherService.getWeatherForCityAndCountry(
+          shipment.city,
+          shipment.country
+        );
+        if (weather) {
+          shipment.weatherSnapshot = weather;
         }
+      } catch {
       }
     }
 
